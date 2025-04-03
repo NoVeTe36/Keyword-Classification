@@ -3,17 +3,19 @@ import os
 import argparse
 
 def main(args):
-    # Load original labeled data
+    # Load original labeled data (just paths)
     with open(args.labeled_file, "r") as f:
         labeled_data = f.read().rstrip().split("\n")
     
-    # Load pseudo-labeled data
+    # Load pseudo-labeled data (path\tlabel\tconfidence)
     pseudo_data = []
     with open(args.pseudo_file, "r") as f:
         for line in f:
             parts = line.strip().split("\t")
-            sample, label = parts[0], parts[1]
-            pseudo_data.append(f"{sample}\t{label}")
+            if len(parts) >= 2:
+                # Keep just the path and label
+                sample, label = parts[0], parts[1]
+                pseudo_data.append(f"{sample}\t{label}")
     
     # Create combined dataset
     combined_data = labeled_data + pseudo_data
