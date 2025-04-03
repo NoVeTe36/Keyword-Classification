@@ -1,0 +1,355 @@
+\documentclass[hidelinks]{report}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{placeins}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{xcolor,graphicx}
+\setcounter{secnumdepth}{0}
+\usepackage{titlesec}
+\usepackage[top=1.4in,bottom=1.4in,right=1.25in,left=1.25in]{geometry}
+\usepackage{rotating}
+\usepackage{subcaption}
+\usepackage{lipsum}
+\usepackage{fancyhdr}
+\usepackage{multirow}
+\usepackage{colortbl}
+
+
+\definecolor{blue}{RGB}{31,56,100}
+
+\usepackage{lipsum}% http://ctan.org/pkg/lipsum
+\makeatletter
+\def\@makechapterhead#1{%
+  {
+  \parindent \z@ \raggedright \normalfont
+    
+    \ifnum \c@secnumdepth >\m@ne
+        \huge\bfseries \thechapter.\ % <-- Chapter # (without "Chapter")
+    \fi
+    \interlinepenalty\@M
+    #1\par\nobreak% <------------------ Chapter title
+    \vskip 40\p@% <------------------ Space between chapter title and first paragraph
+  }}
+\makeatother
+
+
+% Redefine the \thesection and \thesubsection representations
+\renewcommand{\thesection}{\arabic{chapter}.\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+
+% Define a new counter for subsections
+\newcounter{subsecindex}[section]
+\renewcommand{\thesubsecindex}{\thesubsection%
+  \ifnum\value{subsecindex}>0
+    .\arabic{subsecindex}%
+  \fi
+}
+
+% Redefine the \section command to include the index
+\let\oldsection\section
+\renewcommand{\section}[1]{%
+  \setcounter{subsecindex}{0} % Reset subsection counter for each section
+  \refstepcounter{section}%
+  \oldsection{\thesection\hspace{0.5em}#1}%
+}
+
+% Redefine the \subsection command to include the index
+\let\oldsubsection\subsection
+\renewcommand{\subsection}[1]{%
+  \refstepcounter{subsection}%
+  \oldsubsection{\thesubsecindex\hspace{0.5em}#1}%
+}
+
+
+
+
+\begin{document}
+\begin{titlepage}
+\begin{center}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\linewidth]{image/usth.png}
+\end{figure}
+
+
+
+\textsc{\Large }\\[1.5cm]
+{\large \bfseries GROUP PROJECT REPORT}\\[0.5cm]
+
+{\huge \bfseries \uppercase{...} \\[3cm] }
+
+
+% Title
+\rule{\linewidth}{0.3mm} \\[0.4cm]
+{ \huge \bfseries\color{blue} Nitrogen Determination by \\ Kjeldahl Method \\[0.4cm] }
+\rule{\linewidth}{0.3mm} \\[0.5cm]
+\Large\textit{Doctor:} ...\\[0.3cm]
+\large Academic Year: 2023-2026
+
+    
+    
+\end{center}
+\end{titlepage}
+
+
+
+\clearpage
+\title{Self-Training for Keyword Classification: A Practical Exploration}
+
+\begin{titlepage}
+    \begin{center}
+    \null
+    \vfill
+        \huge Nitrogen Determination by \\ Kjeldahl Method
+    \vfill
+    \end{center}
+    \raggedleft
+    \textit{Presented by:}\mbox{}\\
+    Linh Nguyen Thi Thuy    22BA13195 \\
+    
+    
+    \centering
+\end{titlepage}
+
+\tableofcontents
+\thispagestyle{empty} 
+\pagenumbering{arabic}
+
+\clearpage
+\pagestyle{plain} 
+\setcounter{page}{1}
+
+\begin{abstract}
+    \LARGE \noindent The Kjeldahl method is a widely used analytical technique for determining nitrogen content in various organic and inorganic samples. This method has been employed for over a century in analyzing food, beverages, animal feed, agricultural products, wastewater, and soil. The process involves three main steps: digestion, distillation, and titration. In the digestion phase, organic nitrogen is converted into ammonium sulfate using sulfuric acid and a catalyst. The ammonia is then liberated through distillation and quantified by titration. This study follows standardized protocols to ensure accuracy and reliability in nitrogen determination, which is crucial for calculating protein content in food and environmental monitoring.
+\end{abstract}
+
+\chapter{Introduction}
+
+    \section{The Importance of Nitrogen Analysis}
+
+        \noindent Determining nitrogen content plays a vital role in various scientific and industrial fields, including food production, agriculture, environmental studies, and manufacturing. Since nitrogen is a fundamental element in proteins and other biological compounds, its measurement helps assess the composition and quality of different substances.
+
+    \section{Fundamentals of the Kjeldahl Method}
+        \noindent The Kjeldahl method is a widely accepted technique for nitrogen analysis, especially in food and feed testing to estimate protein concentration. It consists of three essential stages: digestion, distillation, and titration.
+
+\chapter{Experimental Design}
+    \section{Digestion Stage}
+        In the digestion process, the sample is broken down using concentrated sulfuric acid \(H_2SO_4\) along with catalysts such as potassium sulfate \(K_2SO_4\) and copper sulfate \(CuSO_4\) or titanium dioxide \(TiO_2\). This reaction decomposes the organic material and converts its nitrogen content into ammonium sulfate \((NH_4)_2SO_4\). 
+        \noindent Chemical reaction:
+        \begin{equation}
+            \text{Organic Nitrogen} + H_2SO_4 \rightarrow (NH_4)_2SO_4
+        \end{equation}
+
+    \section{Distillation Stage}
+        \noindent Following digestion, sodium hydroxide \(NaOH\)  is introduced to the solution to create an alkaline environment, transforming ammonium ions \(NH_4^+\) into ammonia \(NH_3\). The released ammonia is then distilled and captured in a sulfuric acid solution. \\
+        \noindent Chemical reaction:
+        \begin{equation}
+            (NH_4)_2SO_4 + 2NaOH \rightarrow 2NH_3 + Na_2SO_4 + 2H_2O 
+        \end{equation}
+        \begin{equation}
+            NH_3 + H_2SO_4 \rightarrow (NH_4)_2SO_4
+        \end{equation}
+
+    \section{Titration Stage}
+        \noindent The amount of nitrogen present is determined through titration, where the absorbed ammonia is neutralized with a standardized sulfuric acid \((H_2SO_4)\) solution. A pH indicator, such as methyl red, signals the endpoint by changing color. \\
+        \noindent Neutralization reaction:
+        %  2NaOH + H₂SO₄ → Na₂SO₄ + 2H₂O
+        \begin{equation}
+            2NaOH + H_2SO_4 \rightarrow Na_2SO_4 + 2H_2O
+        \end{equation}
+        \noindent The nitrogen percentage is calculated using the following formula:
+        \begin{equation}
+            \begin{aligned}
+                \text{Nitrogen \%} &= \frac{V \times N}{W} \times 100 \\
+                \text{where:} \\
+                V &= \text{Volume of H}_2\text{SO}_4 \text{ used (mL)} \\
+                N &= \text{Normality of H}_2\text{SO}_4 \text{ solution (mol/L)} \\
+                W &= \text{Weight of sample (g)}
+            \end{aligned}
+        \end{equation}  
+        
+
+    \section{Strengths and Limitations of the Kjeldahl Method}
+        \noindent The Kjeldahl method is a well-established analytical approach endorsed by various international organizations, including AOAC, EPA, AACC, AOCS, ISO, and USDA. Its widespread adoption is due to its accuracy, consistency, and relatively simple procedure that does not require highly sophisticated equipment.
+        Despite its advantages, this method has some drawbacks. It only measures total nitrogen, meaning it cannot differentiate between protein-based nitrogen and other nitrogenous compounds, potentially leading to overestimated protein values. Additionally, the digestion step involves concentrated sulfuric acid, which presents safety risks and requires an extended processing time (typically 1.5 to 2 hours). Moreover, this method is ineffective for specific nitrogen-containing compounds, such as those with nitro, azo, or aromatic ring structures. Nevertheless, the Kjeldahl method remains a crucial tool for nitrogen and protein quantification.
+        
+
+
+\chapter{Experiment}
+    \section{Materials}
+        \begin{table}[H]
+        \begin{tabular}{|ccllllll|}
+        \hline
+        \rowcolor[HTML]{93C47D} 
+        \multicolumn{8}{|c|}{\cellcolor[HTML]{93C47D}\textbf{Samples}} \\ \hline
+        \multicolumn{2}{|c|}{\textbf{Reagents}} &
+          \multicolumn{6}{l|}{\textbf{Amount}} \\ \hline
+        \multicolumn{2}{|c|}{\textbf{Sulfuric acid \(H_2SO_4\)}} &
+          \multicolumn{1}{c|}{\textbf{500 mL}} &
+          \multicolumn{1}{l|}{H2SO4 0.05M} &
+          \multicolumn{1}{l|}{Preparation} &
+          \multicolumn{1}{l|}{27.2 mL} &
+          \multicolumn{2}{l|}{500 ml distilled water} \\ \hline
+        \rowcolor[HTML]{B7B7B7} 
+        \multicolumn{2}{|l|}{\cellcolor[HTML]{B7B7B7}} &
+          \multicolumn{1}{l|}{\cellcolor[HTML]{B7B7B7}T1} &
+          \multicolumn{1}{c|}{\cellcolor[HTML]{B7B7B7}\textbf{T2}} &
+          \multicolumn{1}{c|}{\cellcolor[HTML]{B7B7B7}\textbf{T3}} &
+          \multicolumn{1}{c|}{\cellcolor[HTML]{B7B7B7}\textbf{B1}} &
+          \multicolumn{1}{c|}{\cellcolor[HTML]{B7B7B7}\textbf{B2}} &
+          \multicolumn{1}{c|}{\cellcolor[HTML]{B7B7B7}\textbf{B3}} \\ \hline
+        \multicolumn{1}{|c|}{} &
+          \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}} \(TiO_2\) \\ 0.3003g\end{tabular}}} &
+          \multicolumn{1}{l|}{} &
+          \multicolumn{1}{l|}{} &
+          \multicolumn{1}{l|}{} &
+          \multicolumn{1}{l|}{} &
+          \multicolumn{1}{l|}{} &
+           \\ \cline{2-2}
+        \multicolumn{1}{|c|}{} &
+          \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}} \(K_2SO_4\) \\ 10.0074g\end{tabular}}} &
+          \multicolumn{1}{l|}{} &
+          \multicolumn{1}{l|}{} &
+          \multicolumn{1}{l|}{} &
+          \multicolumn{1}{l|}{} &
+          \multicolumn{1}{l|}{} &
+           \\ \cline{2-2}
+        \multicolumn{1}{|c|}{\multirow{-3}{*}{\textbf{Catalyst}}} & 
+          \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}\(CuSO_4\)·\(5H_2O\)\\ 0.3158g\end{tabular}}} &
+          \multicolumn{1}{l|}{\multirow{-3}{*}{1.1058}} &
+          \multicolumn{1}{l|}{\multirow{-3}{*}{1.1149}} &
+          \multicolumn{1}{l|}{\multirow{-3}{*}{1.1106}} &
+          \multicolumn{1}{l|}{\multirow{-3}{*}{1.1233}} &
+          \multicolumn{1}{l|}{\multirow{-3}{*}{1.1195}} &
+          \multirow{-3}{*}{1.1215} \\ \hline
+        \multicolumn{2}{|c|}{Na2S2O3.5H2O} &
+          \multicolumn{1}{l|}{0.7882g} &
+          \multicolumn{1}{c|}{0.8057g} &
+          \multicolumn{1}{c|}{0.7826g} &
+          \multicolumn{1}{c|}{0.7854g} &
+          \multicolumn{1}{c|}{0.7971g} &
+          \multicolumn{1}{c|}{0.7943g} \\ \hline
+        \multicolumn{1}{|c|}{NaOH 10M} &
+          \multicolumn{4}{l|}{400 g} &
+          \multicolumn{3}{l|}{1000 ml distilled water} \\ \hline
+        \multicolumn{1}{|c|}{NaOH 1M} &
+          \multicolumn{4}{l|}{4g} &
+          \multicolumn{3}{l|}{1000 ml distilled water} \\ \hline
+        \multicolumn{2}{|c|}{\cellcolor[HTML]{93C47D}\textbf{Indicator}} &
+          \multicolumn{6}{l|}{\cellcolor[HTML]{93C47D}bromocresol green; methyl orange;  methyl red ; phenolphthalein} \\ \hline
+        \end{tabular}
+        \end{table}
+
+    \noindent There are 6 samples :  3 blank samples + 3 titration samples => Control and determine if the sample is contaminated.
+
+
+    \section{Procedure}
+        \subsection{Digestion}
+            \begin{enumerate}
+                \item Weigh approximately 1-2 g of the sample and record the weight: 
+                    \begin{table}[H]
+                    \centering
+                    \begin{tabular}{|c|c|}
+                    \hline
+                    \rowcolor[HTML]{93C47D}
+                    \textbf{Sample} & \textbf{Weight (g)} \\ \hline
+                    T1 & 1.555 \\ \hline
+                    T2 & 1.4762 \\ \hline
+                    T3 & 1.5331 \\ \hline
+    
+                    \end{tabular}
+                    \end{table}
+                
+                \item Place the sample into a digestion tube, add 4 mL of salicylic acid/sulfuric acid solution  and 0.783 g of \(Na_2S_2O3\) which enhances nitrogen oxidation in the digestion process  and reduces nitrogen oxides that may form during digestion.
+
+                \item Heat until bubbling ceases, then add 1.1 g of the catalyst mixture (K$_2$SO$_4$ to increase the boiling point of sulfuric acid for better digestion efficiency; CuSO$_4$ acts as a catalyst to speed up digestion; TiO$_2$ enhances oxidation in digestion).
+
+                \item Boil the mixture at 350°C until the solution becomes colorless (typically 2 to 2.5 hours).
+
+                \item Allow the digestion tube to cool before proceeding.
+            \end{enumerate}
+
+            \noindent \textbf{Note:} \\
+            \noindent Possible errors and precautions:
+            \begin{itemize}
+                \item Overheating can cause nitrogen loss. Maintain the correct temperature.
+                \item Incomplete digestion results in lower nitrogen recovery. Ensure complete color change.
+                \item Sodium thiosulfate \((Na_2S_2O_3)\) is highly hygroscopic, meaning it can absorb moisture from the air. To ensure accurate weighing, use a dry container and handle it in a low-humidity environment.
+                \item Always handle sulfuric acid \((H_2SO_4)\) with extreme caution due to its high viscosity and corrosive nature 
+                \item Place a small, clean, and dry 30mL beaker on a stable surface.
+                \item Hold the stock bottle of sulfuric acid with both hands for better control.
+                \item Tilt the beaker slightly while pouring the acid slowly. Tilting helps form a thicker liquid layer on the beaker wall, making it easier to control the pouring speed and prevent splashing.
+                \item Never pour directly into a small container or pipette from the stock bottle, as this increases the risk of spills and splashes.
+                \item Adding Sulfuric Acid to the Sample: Pour slowly and steadily to avoid sudden boiling or foaming.
+                \item Heating the Mixture: Ensure the digestion tube is properly secured in the digestion block to prevent accidents.
+                \item Temperature Control: Gradually increase the temperature to avoid sudden bubbling that may cause loss of sample.
+            \end{itemize}
+
+            \paragraph{Why Not Add the Catalyst Immediately?}
+            \begin{itemize}
+                \item \textbf{Prevents Violent Reactions} – Sulfuric acid generates heat when mixed with the sample. Adding the catalyst too early can cause excessive bubbling or foaming, leading to sample loss.
+                \item \textbf{Ensures Uniform Mixing} – Adding acid first fully wets the sample, preventing uneven digestion.
+                \item \textbf{Reduces Sample Loss} – Sudden reactions from the catalyst may cause splashes or overboiling.
+                \item \textbf{Allows Proper System Setup} – Ensuring the digestion system is securely assembled before adding the catalyst prevents chemical spills and gas leaks.
+            \end{itemize}
+            
+            \paragraph{Why does acid turn black?}
+            \begin{itemize}
+                \item The acid turns black because concentrated sulfuric acid (H$_2$SO$_4$) is a strong dehydrating agent, breaking down organic matter by removing water (H$_2$O) and leaving behind carbon residues. This charring reaction leads to the formation of a blackened mixture as carbonized material accumulates.
+            \end{itemize}
+            
+            \paragraph{When installed in the speed digester:}
+            \begin{itemize}
+                \item The reaction process produces SO$_2$ and H$_2$S, so a system is needed to push the gas out. Sulfuric acid reacts with organic matter, producing sulfur dioxide (SO$_2$) and hydrogen sulfide (H$_2$S) gases:
+            
+                \[
+                \text{Organic-S} + H_2SO_4 \rightarrow H_2S\uparrow + \text{other products}
+                \]
+                
+                These gases are toxic and corrosive. A gas removal system is necessary to vent these harmful gases safely, preventing their accumulation, which could interfere with digestion efficiency and pose health hazards in the lab.
+            \end{itemize}
+            
+            \paragraph{Why does pouring Na$_2$CO$_3$ first have a smell?}
+            \begin{itemize}
+                \item When sodium carbonate (Na$_2$CO$_3$) is added first, it reacts with any acidic residues present, releasing carbon dioxide (CO$_2$) gas:
+            
+                \[
+                \text{Na}_2CO_3 + 2H^+ \rightarrow 2Na^+ + H_2O + CO_2\uparrow
+                \]
+                
+                This reaction can carry a noticeable odor due to dissolved gases or impurities. Additionally, if traces of sulfur compounds are present, they may release gaseous byproducts (such as H$_2$S), contributing to the smell:
+                
+                \[
+                \text{Na}_2CO_3 + H_2S \rightarrow NaHS + NaHCO_3
+                \]
+                
+                \[
+                \text{Na}_2CO_3 + H_2SO_4 \rightarrow Na_2SO_4 + H_2O + CO_2\uparrow
+                \]
+                
+                These gases (CO$_2$, H$_2$S, and SO$_2$) contribute to the noticeable smell when Na$_2$CO$_3$ is added first.
+            \end{itemize}
+
+    \section{Distillation and Titration (Back Titration with NaOH)}
+        \begin{enumerate}
+            \item Transfer the digested sample into a Kjeldahl balloon and add  2-3 drops of phenolphthalein \\
+                    \textit{=> When sodium hydroxide (NaOH) is added, it converts ammonium ions \(NH_4+\) into ammonia gas \(NH_3\), and phenolphthalein turns pink, confirming that the solution has become sufficiently alkaline for efficient ammonia distillation.}
+
+
+            
+        \end{enumerate}
+
+\section{Future Work}
+
+
+\clearpage
+\begin{thebibliography}{11}
+\bibitem{hpfa}
+
+\end{thebibliography}
+\end{document}

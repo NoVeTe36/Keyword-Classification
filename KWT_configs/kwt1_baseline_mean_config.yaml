@@ -21,6 +21,7 @@ exp:
     n_workers: 1
     pin_memory: True
     cache: 0 # 0 -> no cache | 1 -> cache wavs | 2 -> cache specs; stops wav augments
+    save_dir: 
     
 
 hparams:
@@ -64,6 +65,7 @@ hparams:
     scheduler:
         n_warmup: 10
         max_epochs: 140
+        T_max: 100
         scheduler_type: cosine_annealing
 
     augment:
