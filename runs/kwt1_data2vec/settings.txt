@@ -1,0 +1,77 @@
+data_root: speech_commands_v0.02/
+exp:
+  cache: 0
+  device: &id001 !!python/object/apply:torch.device
+  - cuda
+  exp_dir: ./runs
+  exp_name: kwt1_data2vec
+  log_freq: 20
+  log_to_file: true
+  log_to_stdout: true
+  n_workers: 1
+  pin_memory: true
+  proj_name: data2vec_KWS
+  save_dir: ./runs/kwt1_data2vec
+  val_freq: 5
+  wandb: false
+  wandb_api_key: null
+hparams:
+  audio:
+    kwargs:
+      center: false
+      fmax: 7600
+      hop_length: 160
+      n_fft: 480
+      n_mels: 80
+      win_length: 480
+    n_mfcc: 40
+    sr: 16000
+  augment: null
+  batch_size: 512
+  device: *id001
+  loss_beta: 2
+  model:
+    average_top_k_layers: 8
+    depth: 12
+    dim: 64
+    dropout: 0.0
+    ema_anneal_end_step: 1000
+    ema_decay: 0.999
+    ema_end_decay: 0.9999
+    emb_dropout: 0.1
+    heads: 1
+    input_res:
+    - 40
+    - 98
+    mask_length: 10
+    mask_prob: 0.65
+    min_masks: 1
+    mlp_dim: 256
+    name: null
+    normalize_targets: true
+    num_classes: 35
+    patch_res:
+    - 40
+    - 1
+    pool: mean
+    pre_norm: false
+  n_epochs: 50
+  optimizer:
+    opt_kwargs:
+      betas: !!python/tuple
+      - 0.9
+      - 0.98
+      eps: 1.0e-06
+      lr: 0.0005
+      weight_decay: 0.01
+    opt_type: adam
+  scheduler:
+    max_epochs: 100
+    n_warmup: 0
+    scheduler_type: cosine_annealing
+  seed: 0
+label_map: null
+modality: audio
+test_list_file: speech_commands_v0.02/_generated/testing_list.txt
+train_list_file: speech_commands_v0.02/_generated/pretraining_first_half.txt
+val_list_file: speech_commands_v0.02/_generated/validation_list.txt

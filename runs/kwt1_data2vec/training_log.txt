@@ -1,0 +1,37 @@
+Step: 0 | epoch: 0 | loss: 1621995.25 | lr: 2.0001174933296487e-05 | target_var: 0.9529077410697937 | prediction_var: 1.784674882888794
+Step: 20 | epoch: 0 | loss: 997754.3125 | lr: 2.0517959592180246e-05 | target_var: 0.9487665891647339 | prediction_var: 1.6105411052703857
+Step: 40 | epoch: 0 | loss: 650747.375 | lr: 2.1972357024417394e-05 | target_var: 0.958905041217804 | prediction_var: 1.4099854230880737
+Step: 60 | epoch: 0 | loss: 558014.625 | lr: 2.435867301758338e-05 | target_var: 0.9471951723098755 | prediction_var: 1.2105703353881836
+Step: 67 | epoch: 0 | time_per_epoch: 184.0845446586609 | avg_train_target_var: 0.9503341584063288 | avg_train_prediction_var: 1.4784736633300781 | avg_loss_per_ep: 1651.5720378937442
+Step: 67 | epoch: 0 | val_loss: 842.5037900135256 | avg_val_target_var: 0.9512036263942718 | avg_val_prediction_var: 0.9471606582403183
+Step: 80 | epoch: 1 | loss: 340937.5 | lr: 2.766756474015437e-05 | target_var: 0.9486402273178101 | prediction_var: 0.8364526033401489
+Step: 100 | epoch: 1 | loss: 297035.65625 | lr: 3.188607732027704e-05 | target_var: 0.9516555070877075 | prediction_var: 0.734403133392334
+Step: 120 | epoch: 1 | loss: 260907.828125 | lr: 3.69976945662862e-05 | target_var: 0.9523059129714966 | prediction_var: 0.6539607048034668
+Step: 134 | epoch: 1 | time_per_epoch: 210.8476641178131 | avg_train_target_var: 0.9500909438773767 | avg_train_prediction_var: 0.745170415337406 | avg_loss_per_ep: 616.5609903092495
+Step: 140 | epoch: 2 | loss: 268109.1875 | lr: 4.298240363039528e-05 | target_var: 0.9528682231903076 | prediction_var: 0.5938435792922974
+Step: 160 | epoch: 2 | loss: 223788.4375 | lr: 4.9816773362386174e-05 | target_var: 0.9478764533996582 | prediction_var: 0.5359549522399902
+Step: 180 | epoch: 2 | loss: 210995.921875 | lr: 5.747404604653357e-05 | target_var: 0.9439335465431213 | prediction_var: 0.4851968586444855
+Step: 200 | epoch: 2 | loss: 56362.71875 | lr: 6.59242421625968e-05 | target_var: 0.9470516443252563 | prediction_var: 0.44356203079223633
+Step: 201 | epoch: 2 | time_per_epoch: 192.07267904281616 | avg_train_target_var: 0.9511764512133243 | avg_train_prediction_var: 0.5206233205190346 | avg_loss_per_ep: 453.03127854554026
+Step: 220 | epoch: 3 | loss: 191037.953125 | lr: 7.5134277760722e-05 | target_var: 0.950592041015625 | prediction_var: 0.40892672538757324
+Step: 240 | epoch: 3 | loss: 185911.8125 | lr: 8.506809399071245e-05 | target_var: 0.9558446407318115 | prediction_var: 0.38561904430389404
+Step: 260 | epoch: 3 | loss: 173934.625 | lr: 9.568679827853826e-05 | target_var: 0.9514298439025879 | prediction_var: 0.3662392199039459
+Step: 268 | epoch: 3 | time_per_epoch: 178.44934511184692 | avg_train_target_var: 0.9503809711826381 | avg_train_prediction_var: 0.3949027141528343 | avg_loss_per_ep: 378.4775931321272
+Step: 280 | epoch: 4 | loss: 169939.328125 | lr: 0.00010694881659735489 | target_var: 0.9562850594520569 | prediction_var: 0.3599947988986969
+Step: 300 | epoch: 4 | loss: 167691.875 | lr: 0.00011881005623686354 | target_var: 0.9516323208808899 | prediction_var: 0.3545060455799103
+Step: 320 | epoch: 4 | loss: 160440.15625 | lr: 0.00013122407843374446 | target_var: 0.9458562135696411 | prediction_var: 0.3534111976623535
+Step: 335 | epoch: 4 | time_per_epoch: 199.8497338294983 | avg_train_target_var: 0.9505625580673787 | avg_train_prediction_var: 0.3573871463982027 | avg_loss_per_ep: 331.9978235176577
+Step: 340 | epoch: 5 | loss: 177672.765625 | lr: 0.00014414228018728553 | target_var: 0.948881983757019 | prediction_var: 0.3564282953739166
+Step: 360 | epoch: 5 | loss: 155230.875 | lr: 0.00015751408454836677 | target_var: 0.9474915862083435 | prediction_var: 0.35444650053977966
+Step: 380 | epoch: 5 | loss: 169711.21875 | lr: 0.00017128713863678716 | target_var: 0.9526054859161377 | prediction_var: 0.3445196747779846
+Step: 400 | epoch: 5 | loss: 152327.84375 | lr: 0.00018540751861166328 | target_var: 0.9421932697296143 | prediction_var: 0.3475388288497925
+Step: 402 | epoch: 5 | time_per_epoch: 180.42769122123718 | avg_train_target_var: 0.9501216011260872 | avg_train_prediction_var: 0.35004004747120304 | avg_loss_per_ep: 318.40616229152545
+Step: 402 | epoch: 5 | val_loss: 312.6255870529005 | avg_val_target_var: 0.9518784761428833 | avg_val_prediction_var: 0.34448172003030775
+Saved ./runs/kwt1_data2vec/best.pth with accuracy 312.6255870529005.
+Saved ./runs/kwt1_data2vec/best_encoder.pth with accuracy 312.6255870529005.
+Step: 420 | epoch: 6 | loss: 169270.6875 | lr: 0.00019981994079240492 | target_var: 0.9520785212516785 | prediction_var: 0.3487064242362976
+Step: 440 | epoch: 6 | loss: 152904.5625 | lr: 0.0002144679781036928 | target_var: 0.9497313499450684 | prediction_var: 0.33116814494132996
+Step: 460 | epoch: 6 | loss: 153419.984375 | lr: 0.00022929428099704232 | target_var: 0.9534797668457031 | prediction_var: 0.346871942281723
+Step: 469 | epoch: 6 | time_per_epoch: 178.31832242012024 | avg_train_target_var: 0.9501460666087136 | avg_train_prediction_var: 0.3401086712951091 | avg_loss_per_ep: 310.02958169733625
+Step: 480 | epoch: 7 | loss: 169866.828125 | lr: 0.000244240801984004 | target_var: 0.951205313205719 | prediction_var: 0.3538290858268738
+Step: 500 | epoch: 7 | loss: 153920.234375 | lr: 0.00025924902290191845 | target_var: 0.95428067445755 | prediction_var: 0.33782052993774414
