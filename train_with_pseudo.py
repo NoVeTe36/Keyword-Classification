@@ -261,8 +261,23 @@ def main(args):
         use_wandb = False
 
     # Set save_dir by combining exp_dir and exp_name
-    if "save_dir" not in config["exp"]:
+    # Ensure exp_dir exists and is not None
+    if "exp_dir" not in config["exp"] or config["exp"]["exp_dir"] is None:
+        config["exp"]["exp_dir"] = "./runs"  # Default directory
+        print(f"Setting default exp_dir: {config['exp']['exp_dir']}")
+
+    # Ensure exp_name exists and is not None (already set above, but check again)
+    if "exp_name" not in config["exp"] or config["exp"]["exp_name"] is None:
+        config["exp"]["exp_name"] = "self_train_experiment"  # Default name
+        print(f"Setting default exp_name: {config['exp']['exp_name']}")
+
+    # Now set save_dir by combining them (should be valid now)
+    if "save_dir" not in config["exp"] or config["exp"]["save_dir"] is None:
         config["exp"]["save_dir"] = os.path.join(config["exp"]["exp_dir"], config["exp"]["exp_name"])
+
+    # Print values for debugging
+    print(f"Save directory: {config['exp']['save_dir']}")
+
     # Create the directory if it doesn't exist
     os.makedirs(config["exp"]["save_dir"], exist_ok=True)
     

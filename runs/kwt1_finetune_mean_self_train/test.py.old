@@ -1,0 +1,121 @@
+import os
+import sys
+# Add the project root directory to Python path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
+
+import torch
+import argparse
+import numpy as np
+import json
+import librosa
+from pathlib import Path
+
+# Now these imports should work
+from utils.misc import get_model
+from utils.dataset import GoogleSpeechDataset
+from config_parser import get_config
+
+def load_audio(file_path, config, target_length=98):
+    """Load and preprocess audio file using the same logic as GoogleSpeechDataset"""
+    audio_settings = config["hparams"]["audio"]
+    
+    # Load audio with librosa
+    audio, sr = librosa.load(file_path, sr=audio_settings["sr"])
+    
+    # Convert to features using MFCC
+    n_fft = audio_settings["kwargs"].get("n_fft", 480)
+    win_length = audio_settings["kwargs"].get("win_length", 480)
+    hop_length = audio_settings["kwargs"].get("hop_length", 160)
+    n_mels = audio_settings["kwargs"].get("n_mels", 80)
+    n_mfcc = audio_settings.get("n_mfcc", 40)
+    fmin = audio_settings["kwargs"].get("fmin", 20)
+    fmax = audio_settings["kwargs"].get("fmax", 7600)
+    
+    # Extract MFCC features
+    mfcc = librosa.feature.mfcc(
+        y=audio, 
+        sr=sr, 
+        n_mfcc=n_mfcc, 
+        n_fft=n_fft,
+        win_length=win_length,
+        hop_length=hop_length,
+        n_mels=n_mels,
+        fmin=fmin,
+        fmax=fmax
+    )
+    
+    # Normalize features
+    mfcc = mfcc - np.mean(mfcc, axis=1, keepdims=True)
+    mfcc = mfcc / (np.std(mfcc, axis=1, keepdims=True) + 1e-8)
+    
+    # Handle sequence length - either pad or truncate to match the expected length
+    current_length = mfcc.shape[1]
+    if current_length > target_length:
+        # Truncate to the target length
+        mfcc = mfcc[:, :target_length]
+    elif current_length < target_length:
+        # Pad with zeros to reach target length
+        padding = np.zeros((mfcc.shape[0], target_length - current_length))
+        mfcc = np.concatenate([mfcc, padding], axis=1)
+    
+    return mfcc
+
+def main():
+    # Set paths
+    model_path = "runs/kwt1_finetune_mean_self_train/best.pth"
+    audio_path = "speech_commands_v0.02/bird/63f7a489_nohash_0.wav"
+    config_path = "KWT_configs/kwt1_finetune_mean_config.yaml"  # Update this to your actual config path
+    
+    # Parse config
+    config = get_config(config_path)
+    
+    # Set device
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    print(f"Using device: {device}")
+    
+    # Load label mapping
+    with open(config["label_map"], "r") as f:
+        label_map = json.load(f)
+        # Convert string keys to integers and reverse the mapping
+        idx_2_label = {int(k): v for k, v in label_map.items()}
+    
+    # Create model
+    model = get_model(config["hparams"]["model"])
+    
+    # Load model weights
+    print(f"Loading model from {model_path}")
+    checkpoint = torch.load(model_path, map_location=device)
+    model.load_state_dict(checkpoint["model_state_dict"])
+    model.to(device)
+    model.eval()
+    
+    # Process audio file
+    print(f"Processing audio file: {audio_path}")
+    audio_features = load_audio(audio_path, config)
+    audio_tensor = torch.tensor(audio_features, dtype=torch.float32).unsqueeze(0).unsqueeze(1).to(device)
+    
+    # Perform inference
+    with torch.no_grad():
+        outputs = model(audio_tensor)
+        probabilities = torch.nn.functional.softmax(outputs, dim=1)
+        
+        # Get top prediction
+        _, predicted_idx = torch.max(outputs, 1)
+        predicted_idx = predicted_idx.item()
+        predicted_label = idx_2_label.get(predicted_idx, "Unknown")
+        confidence = probabilities[0][predicted_idx].item() * 100
+        
+        print(f"\nPrediction: {predicted_label} (class {predicted_idx})")
+        print(f"Confidence: {confidence:.2f}%")
+        
+        # Display top 3 predictions
+        print("\nTop 3 predictions:")
+        top3_prob, top3_idx = torch.topk(probabilities, 3)
+        for i in range(3):
+            idx = top3_idx[0][i].item()
+            prob = top3_prob[0][i].item() * 100
+            label = idx_2_label.get(idx, "Unknown")
+            print(f"{label} (class {idx}): {prob:.2f}%")
+
+if __name__ == "__main__":
+    main()

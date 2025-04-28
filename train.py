@@ -56,7 +56,7 @@ def training_pipeline(config):
     # model
     model = get_model(config["hparams"]["model"])
     if args.ckpt:
-        ckpt = torch.load(args.ckpt, map_location="cpu")
+        ckpt = torch.load(args.ckpt, map_location="cuda")
         model.load_state_dict(ckpt["model_state_dict"])
         print(f"Loaded checkpoint {args.ckpt}.")
     model = model.to(config["hparams"]["device"])

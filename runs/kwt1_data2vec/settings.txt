@@ -1,6 +1,6 @@
 data_root: speech_commands_v0.02/
 exp:
-  cache: 0
+  cache: 2
   device: &id001 !!python/object/apply:torch.device
   - cuda
   exp_dir: ./runs
@@ -8,7 +8,7 @@ exp:
   log_freq: 20
   log_to_file: true
   log_to_stdout: true
-  n_workers: 1
+  n_workers: 8
   pin_memory: true
   proj_name: data2vec_KWS
   save_dir: ./runs/kwt1_data2vec
@@ -55,7 +55,7 @@ hparams:
     - 1
     pool: mean
     pre_norm: false
-  n_epochs: 50
+  n_epochs: 200
   optimizer:
     opt_kwargs:
       betas: !!python/tuple

@@ -4,16 +4,16 @@ exp:
   device: &id001 !!python/object/apply:torch.device
   - cuda
   exp_dir: ./runs
-  exp_name: kwt1_finetune_mean
+  exp_name: kwt1_baseline_mean
   log_freq: 20
   log_to_file: true
   log_to_stdout: true
   n_workers: 8
   pin_memory: true
   proj_name: data2vec_KWS
-  save_dir: ./runs/kwt1_finetune_mean
+  save_dir: ./runs/kwt1_baseline_mean
   val_freq: 5
-  wandb: true
+  wandb: false
   wandb_api_key: null
 hparams:
   audio:
@@ -60,6 +60,7 @@ hparams:
       weight_decay: 0.1
     opt_type: adamw
   scheduler:
+    T_max: 100
     max_epochs: 140
     n_warmup: 10
     scheduler_type: cosine_annealing

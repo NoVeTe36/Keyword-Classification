@@ -18,7 +18,7 @@ exp:
     log_to_file: True
     log_to_stdout: True
     val_freq: 5    # validate every v_f epochs
-    n_workers: 1
+    n_workers: 8
     pin_memory: True
     cache: 2 # 0 -> no cache | 1 -> cache wavs | 2 -> cache specs; stops wav augments
     

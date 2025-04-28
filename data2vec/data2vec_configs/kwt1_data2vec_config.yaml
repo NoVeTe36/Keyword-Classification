@@ -19,15 +19,15 @@ exp:
     log_to_file: True
     log_to_stdout: True
     val_freq: 5    # validate every v_f epochs
-    n_workers: 1
+    n_workers: 8
     pin_memory: True
-    cache: 0 # 0 -> no cache | 1 -> cache wavs | 2 -> cache specs; stops wav augments
+    cache: 2 # 0 -> no cache | 1 -> cache wavs | 2 -> cache specs; stops wav augments
     
 
 hparams:
     seed: 0
     batch_size: 512
-    n_epochs: 50
+    n_epochs: 200
     device: "cuda"
     loss_beta: 2 # Ignored if MSE loss is used
 

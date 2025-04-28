@@ -14,9 +14,12 @@ def main(args):
     random.seed(args.seed)
     random.shuffle(pretrain_list)
     
-    # Split into two halves
-    first_half = pretrain_list[:total_samples//2]
-    second_half = pretrain_list[total_samples//2:]
+    # Split into 80 for pretraining and 20 for pseudo-labeling
+#    first_half = pretrain_list[:total_samples//2]
+#    second_half = pretrain_list[total_samples//2:]
+    split_index = int(total_samples * 0.2)
+    first_half = pretrain_list[:split_index]
+    second_half = pretrain_list[split_index:]
     
     # Save the splits
     with open(args.output_dir + "/pretraining_first_half.txt", "w") as f:
